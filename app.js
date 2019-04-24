@@ -1,6 +1,15 @@
 var exphbs = require('express-handlebars');
 const express = require('express')
 const app = express()
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/rotten-potatoes', {
+    useNewUrlParser: true
+});
+const Review = mongoose.model('Review', {
+    title: String,
+    movieTitle: String
+});
+
 
 //Initialize handlebars
 app.engine('handlebars', exphbs({
@@ -20,8 +29,11 @@ app.set('view engine', 'handlebars');
 // INDEX
 app.get('/', (req, res) => {
     res.render('reviews-index', {
-        reviews: reviews
-    });
+            reviews: reviews
+        })
+        .catch(err => {
+            console.log(err);
+        })
 })
 
 
@@ -42,3 +54,11 @@ let reviews = [{
         movieTitle: 'Titanic'
     }
 ]
+
+reviews.find()
+    .then(review => {
+        // Code in here is executed when the promise resolves      
+    })
+    .catch(err => {
+
+    });

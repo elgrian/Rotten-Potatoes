@@ -7,8 +7,10 @@ mongoose.connect('mongodb://localhost/rotten-potatoes', {
 });
 const Reviews = mongoose.model('Review', {
     title: String,
+    description: String,
     movieTitle: String
 });
+
 
 
 //Initialize handlebars

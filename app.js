@@ -17,3 +17,22 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
     console.log('App listening on port 3000!')
 })
+
+
+//Mock array of objects
+let reviews = [{
+        title: 'Great Review',
+        movieTitle: 'Batman II'
+    },
+    {
+        title: 'Awesome Movie',
+        movieTitle: 'Titanic'
+    }
+]
+
+// INDEX
+app.get('/reviews', (req, res) => {
+    res.render('reviews-index', {
+        reviews: reviews
+    });
+})

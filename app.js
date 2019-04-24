@@ -8,11 +8,11 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-app.get('/', (req, res) => {
-    res.render('home', {
-        msg: 'Handlebars are cool!'
-    });
-})
+// app.get('/', (req, res) => {
+//     res.render('home', {
+//         msg: 'Handlebars are cool!'
+//     });
+// })
 
 app.listen(3000, () => {
     console.log('App listening on port 3000!')
@@ -31,7 +31,7 @@ let reviews = [{
 ]
 
 // INDEX
-app.get('/reviews', (req, res) => {
+app.get('/', (req, res) => {
     res.render('reviews-index', {
         reviews: reviews
     });

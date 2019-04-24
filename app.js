@@ -74,9 +74,8 @@ app.get('/reviews/new', (req, res) => {
 //SHOW
 app.get('/reviews/:id', (req, res) => {
     Reviews.findById(req.params.id).then((review) => {
-        res.render('reviews-show', {
-            review: review
-        })
+        console.log(review)
+        res.redirect(`/reviews/${review._id}`) // Redirect to reviews /:id
     }).catch((err) => {
         console.log(err.message);
     })

@@ -69,3 +69,15 @@ Reviews.find()
 app.get('/reviews/new', (req, res) => {
     res.render('reviews-new', {});
 })
+
+
+//SHOW
+app.get('/reviews/:id', (req, res) => {
+    Reviews.findById(req.params.id).then((review) => {
+        res.render('reviews-show', {
+            review: review
+        })
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})

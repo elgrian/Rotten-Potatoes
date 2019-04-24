@@ -8,11 +8,24 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
+// ROUTES
+
+
 // app.get('/', (req, res) => {
 //     res.render('home', {
 //         msg: 'Handlebars are cool!'
 //     });
 // })
+
+// INDEX
+app.get('/', (req, res) => {
+    res.render('reviews-index', {
+        reviews: reviews
+    });
+})
+
+
+// END OF ROUTES
 
 app.listen(3000, () => {
     console.log('App listening on port 3000!')
@@ -29,10 +42,3 @@ let reviews = [{
         movieTitle: 'Titanic'
     }
 ]
-
-// INDEX
-app.get('/', (req, res) => {
-    res.render('reviews-index', {
-        reviews: reviews
-    });
-})

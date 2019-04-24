@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/rotten-potatoes', {
     useNewUrlParser: true
 });
-const Review = mongoose.model('Review', {
+const Reviews = mongoose.model('Review', {
     title: String,
     movieTitle: String
 });
@@ -55,10 +55,15 @@ let reviews = [{
     }
 ]
 
-reviews.find()
+Reviews.find()
     .then(review => {
         // Code in here is executed when the promise resolves      
     })
     .catch(err => {
 
     });
+
+//NEW
+app.get('/reviews/new', (req, res) => {
+    res.render('reviews-new', {});
+})

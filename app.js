@@ -1,6 +1,9 @@
 var exphbs = require('express-handlebars');
 const express = require('express')
+const methodOverride = require('method-override')
 const app = express()
+// override with POSt having ?_method=DELETE or ?_method=PUT
+app.use(methodOverride('_method'))
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/rotten-potatoes', {
     useNewUrlParser: true
@@ -79,4 +82,24 @@ app.get('/reviews/:id', (req, res) => {
     }).catch((err) => {
         console.log(err.message);
     })
+})
+
+// EDIT
+app.get('/reviews.id:/edit', (req, res) => {
+    Reviews.findById(req.params.id, function (err, review) {
+        res.render('reviews-edit', {
+            review: review
+        });
+    })
+})
+
+//UPDATE
+app.put('/reviews/:id', (req, res) => {
+    Reviews.findByIdAndUpdate(req.params.id, req.body)
+        .then(review => {
+            res.redirect(`/reviews/${review._id}`)
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
 })

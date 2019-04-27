@@ -1,18 +1,26 @@
-// NEW
-app.get('/reviews/new', (req, res) => {
-        res.render('reviews-new', {
-            title: "New Review"
-        });
-    })
+// models/review.js
 
-    ...
+const mongoose = require('mongoose');
 
-    // EDIT
-    app.get('/reviews/:id/edit', (req, res) => {
-        Review.findById(req.params.id, function (err, review) {
-            res.render('reviews-edit', {
-                review: review,
-                title: "Edit Review"
+const Reviews = mongoose.model('Review', {
+    title: String,
+    description: String,
+    movieTitle: String
+});
+
+module.exports = Review;
+module.exports = function (app, Reviews) {
+
+    app.get('/', (req, res) => {
+        Reviews.find()
+            .then(reviews => {
+                res.render('reviews-index', {
+                    reviews: reviews
+                });
+            })
+            .catch(err => {
+                console.log(err);
             });
-        })
-    })
+    });
+
+}

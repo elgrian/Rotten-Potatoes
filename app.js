@@ -2,17 +2,19 @@ var exphbs = require('express-handlebars');
 const express = require('express')
 const methodOverride = require('method-override')
 const app = express()
+const reviews = require('./controllers/reviews')(app);
 // override with POSt having ?_method=DELETE or ?_method=PUT
 app.use(methodOverride('_method'))
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/rotten-potatoes', {
     useNewUrlParser: true
 });
-const Reviews = mongoose.model('Review', {
-    title: String,
-    description: String,
-    movieTitle: String
-});
+module.exports = app;
+// const Reviews = mongoose.model('Review', {
+//     title: String,
+//     description: String,
+//     movieTitle: String
+// });
 
 
 
